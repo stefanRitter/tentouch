@@ -62,8 +62,9 @@ var gEvents = [ "tap", "hold",
     // touch event handlers
     function initEvent(e) {
       e.preventDefault(); e.stopPropagation();
-      //$('.events').prepend('<p>doubletap</p>');
+      $('.events').prepend('<p>'+ e.type +'</p>');
     }
+    
     $canvas.hammer().on('drag' , function(e) {
       initEvent(e);
       var object = new Circle();
@@ -77,19 +78,19 @@ var gEvents = [ "tap", "hold",
       initEvent(e);
     });
 
-    canvas.on('dragup' , function(e) {
+    $canvas.on('dragup' , function(e) {
       initEvent(e);
     });
 
-    canvas.hammer().on('swipe' , function(e) {
+    $canvas.hammer().on('swipe' , function(e) {
       initEvent(e);
     });
 
-    canvas.hammer().on('pinchin' , function(e) {
+    $canvas.hammer().on('pinchin' , function(e) {
       initEvent(e);
     });
 
-    canvas.on('rotate' , function(e) {
+    $canvas.on('rotate' , function(e) {
       initEvent(e);
     });
 
