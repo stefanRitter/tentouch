@@ -55,8 +55,8 @@ var gEvents = [ "tap", "hold",
 
 
     // setup canvas
-    canvas.width = document.width;
-    canvas.height = document.height;
+    canvas.width = $(window).width();
+    canvas.height = $(window).height();
     
 
     // touch event handlers
