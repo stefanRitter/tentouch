@@ -31,8 +31,8 @@ var gEvents = [ "tap", "hold",
       this.life = 500;
       this.render = function() {
         if (this.life >= 0) {
-          if( this.life <= 80) {
-            context.fillStyle = this.color + this.life/80.0 + ")";
+          if( this.life <= 200) {
+            context.fillStyle = this.color + this.life/200.0 + ")";
           } else {
             context.fillStyle = this.color + 1 + ")";
           }
