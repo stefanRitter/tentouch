@@ -27,6 +27,7 @@ var gEvents = [ "tap", "hold",
     function Circle() {
       this.x = 0;
       this.y = 0;
+      this.size = 25;
       this.color = 0.0;
       this.life = 500;
       this.render = function() {
@@ -37,7 +38,7 @@ var gEvents = [ "tap", "hold",
             context.fillStyle = this.color + 1 + ")";
           }
           context.beginPath();
-          context.arc(this.x, this.y, 25, 0, Math.PI*2, true);
+          context.arc(this.x, this.y, this.size, 0, Math.PI*2, true);
           context.closePath();
           context.fill();
           this.life--;
@@ -51,6 +52,10 @@ var gEvents = [ "tap", "hold",
           g = Math.floor((Math.random()*50)+1),
           b = Math.floor((Math.random()*100)+1);
       return "rgba(" + r + "," + g + "," + b + ",";
+    }
+
+    function randomSize() {
+      return Math.floor((Math.random()*100)+1);
     }
 
 
@@ -68,9 +73,10 @@ var gEvents = [ "tap", "hold",
     $canvas.hammer().on('drag' , function(e) {
       initEvent(e);
       var object = new Circle();
-      object.x = e.gesture.center.pageX-25;
-      object.y = e.gesture.center.pageY-25;
+      object.x = e.gesture.center.pageX;
+      object.y = e.gesture.center.pageY;
       object.color = randomColor();
+      object.size = randomSize();
       objects.push(object);
     });
 
