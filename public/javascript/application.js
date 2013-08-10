@@ -48,7 +48,7 @@ var gEvents = [ "tap", "hold",
 
     function randomColor() {
       var r = Math.floor((Math.random()*255)+1),
-          g = Math.floor((Math.random()*100)+1),
+          g = Math.floor((Math.random()*50)+1),
           b = Math.floor((Math.random()*100)+1);
       return "rgba(" + r + "," + g + "," + b + ",";
     }
@@ -60,9 +60,12 @@ var gEvents = [ "tap", "hold",
     
 
     // touch event handlers
-    $canvas.hammer().on('drag' , function(e) {
+    function initEvent(e) {
       e.preventDefault(); e.stopPropagation();
-      $('.events').prepend('<p>tap</p>');
+      //$('.events').prepend('<p>doubletap</p>');
+    }
+    $canvas.hammer().on('drag' , function(e) {
+      initEvent(e);
       var object = new Circle();
       object.x = e.gesture.center.pageX-25;
       object.y = e.gesture.center.pageY-25;
@@ -71,30 +74,25 @@ var gEvents = [ "tap", "hold",
     });
 
     $canvas.hammer().on('doubletap' , function(e) {
-      e.preventDefault(); e.stopPropagation();
-      $('.events').prepend('<p>doubletap</p>');
+      initEvent(e);
     });
-/*
+
     canvas.on('dragup' , function(e) {
-      e.preventDefault(); e.stopPropagation();
-      $('.events').prepend('<p>dragup</p>');
+      initEvent(e);
     });
 
     canvas.hammer().on('swipe' , function(e) {
-      e.preventDefault(); e.stopPropagation();
-      $('.events').prepend('<p>swipe</p>');
+      initEvent(e);
     });
 
     canvas.hammer().on('pinchin' , function(e) {
-      e.preventDefault(); e.stopPropagation();
-      $('.events').prepend('<p>pinchin</p>');
+      initEvent(e);
     });
 
     canvas.on('rotate' , function(e) {
-      e.preventDefault(); e.stopPropagation();
-      $('.events').prepend('<p>rotate</p>');
+      initEvent(e);
     });
-*/
+
 
 
 
