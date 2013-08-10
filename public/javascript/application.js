@@ -76,12 +76,14 @@ var gEvents = [ "tap", "hold",
     
     $canvas.hammer().on('drag' , function(e) {
       initEvent(e);
-      var object = new Circle();
-      object.x = e.gesture.center.pageX;
-      object.y = e.gesture.center.pageY;
-      object.color = randomColor();
-      object.size = randomSize();
-      objects.push(object);
+      for(var i = 0; i < e.gesture.touches.length; i++) {
+        var object = new Circle();
+        object.x = e.gesture.touches[i].pageX;
+        object.y = e.gesture.touches[i].pageY;
+        object.color = randomColor();
+        object.size = randomSize();
+        objects.push(object);
+      }
     });
 
     $canvas.hammer().on('doubletap' , function(e) {
