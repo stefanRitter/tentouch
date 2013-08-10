@@ -60,14 +60,18 @@ var gEvents = [ "tap", "hold",
 
 
     // setup canvas
-    canvas.width = $(window).width();
-    canvas.height = $(window).height();
+    function resize() {
+      canvas.width = $(window).width();
+      canvas.height = $(window).height();
+    }
+    $(window).resize(resize);
+    resize();
     
 
     // touch event handlers
     function initEvent(e) {
       e.preventDefault(); e.stopPropagation();
-      $('.events').prepend('<p>'+ e.type +'</p>');
+      //$('.events').prepend('<p>'+ e.type +'</p>');
     }
     
     $canvas.hammer().on('drag' , function(e) {
