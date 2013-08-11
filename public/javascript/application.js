@@ -74,12 +74,12 @@ var gEvents = [ "tap", "hold",
       //console.log(e.type);
     }
     
-    $canvas.hammer().on('drag' , function(e) {
+    $canvas.hammer().bind('touchmove' , function(e) {
       initEvent(e);
-      for(var i = 0; i < e.gesture.touches.length; i++) {
+      for(var i = 0; i < e.originalEvent.touches.length; i++) {
         var object = new Circle();
-        object.x = e.gesture.touches[i].pageX;
-        object.y = e.gesture.touches[i].pageY;
+        object.x = e.originalEvent.touches[i].pageX;
+        object.y = e.originalEvent.touches[i].pageY;
         if (i < 5) {
           object.color = randomColor();
         } else {
