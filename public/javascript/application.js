@@ -29,7 +29,7 @@ var gEvents = [ "tap", "hold",
       this.y = 0;
       this.size = 25;
       this.color = 0.0;
-      this.life = 500;
+      this.life = 400;
       this.render = function() {
         if (this.life >= 0) {
           if( this.life <= 200) {
@@ -70,8 +70,8 @@ var gEvents = [ "tap", "hold",
 
     // touch event handlers
     function initEvent(e) {
-      e.preventDefault(); e.stopPropagation();
-      //$('.events').prepend('<p>'+ e.type +'</p>');
+      //e.preventDefault(); e.stopPropagation();
+      //console.log(e.type);
     }
     
     $canvas.hammer().on('drag' , function(e) {
@@ -80,7 +80,11 @@ var gEvents = [ "tap", "hold",
         var object = new Circle();
         object.x = e.gesture.touches[i].pageX;
         object.y = e.gesture.touches[i].pageY;
-        object.color = randomColor();
+        if (i < 5) {
+          object.color = randomColor();
+        } else {
+          object.color = "rgba(0,0,0,";
+        }
         object.size = randomSize();
         objects.push(object);
       }
@@ -107,12 +111,14 @@ var gEvents = [ "tap", "hold",
     });
 
 
-
-
+    // render all objects to canvas at max FPS
     function render() {
       context.clearRect(0,0,canvas.width,canvas.height);
       for (var i = 0; i < objects.length; i++) {
         objects[i].render();
+      }
+      if (objects[0] && objects[0].life <= 0) {
+        objects.shift();
       }
       window.requestAnimationFrame(render);
     }
