@@ -74,19 +74,25 @@ var gEvents = [ "tap", "hold",
       //console.log(e.type);
     }
     
+    var skip = false;
     $canvas.hammer().bind('touchmove' , function(e) {
       initEvent(e);
-      for(var i = 0; i < e.originalEvent.touches.length; i++) {
-        var object = new Circle();
-        object.x = e.originalEvent.touches[i].pageX;
-        object.y = e.originalEvent.touches[i].pageY;
-        if (i < 5) {
-          object.color = randomColor();
-        } else {
-          object.color = "rgba(0,0,0,";
+      if (skip) {
+        skip = false;
+      } else {
+        for(var i = 0; i < e.originalEvent.touches.length; i++) {
+          var object = new Circle();
+          object.x = e.originalEvent.touches[i].pageX;
+          object.y = e.originalEvent.touches[i].pageY;
+          if (i < 5) {
+            object.color = randomColor();
+          } else {
+            object.color = "rgba(0,0,0,";
+          }
+          object.size = randomSize();
+          objects.push(object);
         }
-        object.size = randomSize();
-        objects.push(object);
+        skip = true;
       }
     });
 
