@@ -29,11 +29,11 @@ var gEvents = [ "tap", "hold",
       this.y = 0;
       this.size = 25;
       this.color = 0.0;
-      this.life = 400;
+      this.life = 200;
       this.render = function() {
         if (this.life >= 0) {
-          if( this.life <= 200) {
-            context.fillStyle = this.color + this.life/200.0 + ")";
+          if( this.life <= 100) {
+            context.fillStyle = this.color + this.life/100.0 + ")";
           } else {
             context.fillStyle = this.color + 1 + ")";
           }
